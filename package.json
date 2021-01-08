@@ -9,6 +9,18 @@
       "npm": ">=7.0.0",
       "yarn": ">=1.1.0"
     },
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    },
     "main": "app.js",
     "scripts": {
         "start": "node app.js",
