@@ -58,7 +58,30 @@ router.post('/create', async (req, res) => {
 })
 
 // Update existing user
-router.patch('/update/:username', async (req, res) => {})
+router.patch('/update/:username', async (req, res) => {
+  try {
+    if (req.body.username !== null) {
+      const updateUser = {
+        name: req.body.name,
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
+      }
+
+      User.findOneAndUpdate({ username: req.body.username }, updateUser, { useFindAndModify: false }, (err) => {
+        if (err) {
+          res.status(400).json({ message: err })
+        } else {
+          res.json({ message: 'User updated.' })
+        }
+      })
+    }
+  }
+
+  catch (err) {
+    res.status(400).json({ message: err.message })
+  }
+})
 
 // Delete existing user
 router.delete('/delete/:id', async (req, res) => {
