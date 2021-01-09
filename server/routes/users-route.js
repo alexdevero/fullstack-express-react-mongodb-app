@@ -36,3 +36,24 @@ router.get('/:username', async (req, res, next) => {
     })
   }
 })
+
+// Create new user
+router.post('/create', async (req, res) => {
+  const user = new User({
+    name: req.body.name,
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password
+  })
+
+  try {
+    const newUser = await user.save()
+
+    res.status(200).json({ message: 'User created.' })
+  }
+
+  catch (err) {
+    res.status(400).json({ message: err.message })
+  }
+})
+
