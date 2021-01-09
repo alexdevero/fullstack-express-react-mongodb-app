@@ -61,12 +61,7 @@ router.post('/create', async (req, res) => {
 router.patch('/update/:username', async (req, res) => {
   try {
     if (req.body.username !== null) {
-      const updateUser = {
-        name: req.body.name,
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
-      }
+      const updateUser = { ...req.body }
 
       User.findOneAndUpdate({ username: req.body.username }, updateUser, { useFindAndModify: false }, (err) => {
         if (err) {
